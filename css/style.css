@@ -927,3 +927,58 @@ textarea:read-only {
 }
 /* End of Styles for chanegelog and issue template */
 
+/* ===== Popup dark mode ===== */
+body.snu-dark { background:#0b1929 !important; color:#e2e8f0 !important; }
+body.snu-dark #content ul.nav { background-color:#0d1f34 !important; border-bottom-color:#f59e42 !important; }
+body.snu-dark #content .nav-tabs .nav-link.active { background-color:#1a2f45 !important; border-color:#f59e42 !important; color:#fff !important; }
+body.snu-dark #content .nav-link { color:#cbd5e1 !important; }
+body.snu-dark #content .nav-link:hover:not(.active) { color:#fff !important; text-decoration-color:#fff !important; }
+body.snu-dark .tab-content { background:#0b1929; }
+body.snu-dark .form-control { background:#060e1a !important; border-color:#1e3a5f !important; color:#e2e8f0 !important; }
+body.snu-dark .form-control:focus { border-color:#3b82f6 !important; box-shadow:none !important; }
+body.snu-dark .form-select { background-color:#060e1a !important; border-color:#1e3a5f !important; color:#e2e8f0 !important; }
+body.snu-dark .btn-primary { background-color:#f59e42 !important; border-color:#f59e42 !important; color:#000 !important; }
+body.snu-dark .btn-primary:hover { background-color:#d97706 !important; border-color:#d97706 !important; }
+body.snu-dark .btn-outline-secondary { border-color:#4a6580 !important; color:#94a3b8 !important; background:transparent !important; }
+body.snu-dark .btn-outline-secondary:hover { background:#1a2f45 !important; color:#e2e8f0 !important; }
+body.snu-dark .btn-sm, body.snu-dark .dt-button { background-color:#1a2f45 !important; border-color:#2d4a6f !important; color:#94a3b8 !important; }
+body.snu-dark a { color:#f59e42 !important; }
+body.snu-dark a:hover { color:#fbbf24 !important; }
+body.snu-dark .alert-danger { background:#2d1a1a !important; border-color:#7f1d1d !important; color:#fca5a5 !important; }
+body.snu-dark .alert-warning { background:#2d2410 !important; border-color:#7c5c0f !important; color:#fcd34d !important; }
+body.snu-dark .alert-info { background:#0d2235 !important; border-color:#1e4a72 !important; color:#93c5fd !important; }
+body.snu-dark table, body.snu-dark .table { color:#e2e8f0 !important; --bs-table-bg:transparent; --bs-table-striped-bg:#0d1f34; --bs-table-hover-bg:#152535; }
+body.snu-dark td, body.snu-dark th { color:#e2e8f0 !important; border-color:#1e3a5f !important; }
+body.snu-dark .form-check-label { color:#94a3b8; }
+body.snu-dark h5 { color:#e2e8f0; }
+body.snu-dark label { color:#94a3b8; }
+body.snu-dark hr { border-color:#1e3a5f; }
+body.snu-dark select { background:#060e1a !important; border-color:#1e3a5f !important; color:#e2e8f0 !important; }
+body.snu-dark .dataTables_info, body.snu-dark .dataTables_wrapper { color:#94a3b8; }
+body.snu-dark .dataTables_wrapper .dataTables_paginate .paginate_button { color:#94a3b8 !important; }
+body.snu-dark input[type="color"] { background:#060e1a; border-color:#1e3a5f; }
+body.snu-dark textarea { background:#060e1a !important; border-color:#1e3a5f !important; color:#e2e8f0 !important; }
+body.snu-dark textarea:read-only { background-color:#0a1524 !important; }
+body.snu-dark .db-meta-info { background-color:#0d1929 !important; border-color:#1e3a5f !important; }
+body.snu-dark .db-label { color:#94a3b8 !important; }
+body.snu-dark .db-value { color:#cbd5e1 !important; }
+body.snu-dark .nerds-only-label { color:#4a6580 !important; }
+body.snu-dark #cmdform { background-color:#0d1929 !important; border-color:#1e3a5f !important; }
+body.snu-dark #cmdformhelp { background-color:#060e1a !important; border-color:#1e3a5f !important; color:#94a3b8 !important; }
+body.snu-dark .snucmdurl { color:#94a3b8 !important; }
+body.snu-dark .width30 { background:#060e1a !important; border-color:#1e3a5f !important; color:#e2e8f0 !important; }
+body.snu-dark #changelog { background:linear-gradient(to bottom,#0d1929,#0b1824) !important; border-color:#1e3a5f !important; }
+body.snu-dark #changelog::after { background:linear-gradient(to bottom,rgba(11,24,41,0),rgba(11,24,41,1)) !important; }
+body.snu-dark .changelog-toggle-btn { background:#0d1929 !important; border-color:#1e3a5f !important; color:#94a3b8 !important; }
+body.snu-dark .changelog-toggle-btn:hover { background:#152535 !important; color:#e2e8f0 !important; }
+body.snu-dark .version-header { color:#e2e8f0 !important; }
+body.snu-dark .entry { color:#94a3b8 !important; }
+body.snu-dark .section-title { color:#cbd5e1 !important; }
+body.snu-dark .modal-box { background:#0d1929 !important; }
+body.snu-dark .modal-title { color:#e2e8f0 !important; }
+body.snu-dark .copy-btn { background:#1a2f45 !important; border-color:#2d4a6f !important; color:#94a3b8 !important; }
+body.snu-dark .modal-close { color:#94a3b8 !important; }
+body.snu-dark #modal-issue-template-content, body.snu-dark .modal-box pre { background:#060e1a !important; color:#e2e8f0 !important; }
+body.snu-dark .wasabi { background-color:#0d2a1a !important; }
+/* ===== End popup dark mode ===== */
+

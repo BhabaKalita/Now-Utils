@@ -311,6 +311,7 @@ const airportCodes = {
 $.fn.dataTable.ext.errMode = 'none';
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('snu-dark');
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         tabid = tabs[0].id;
         tabIndex = tabs[0].index;

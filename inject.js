@@ -3497,50 +3497,40 @@ function snuSearchLargeSelects() {
 
 function snuSetShortCuts() {
     var divstyle;
-    let genericStyles = `
-    .snuflash {
-        background: radial-gradient(circle, #55FA46, #29B4F8);
-        background-clip: text;
-        color: transparent;
-        animation: snuflash 7s linear infinite;
-        background-size: 200% 200%;
-    }
-
-    @keyframes snuflash {
-        0% {
-            background-position: 0% 0%;
-        }
-
-        50% {
-            background-position: 100% 100%;
-        }
-
-        100% {
-            background-position: 0% 0%;
-        }
-    }
-    `;
+    let genericStyles = ``;
     if (snusettings.slashtheme == 'light') {
         divstyle = `<style>
-        div.snutils { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; z-index:10000000000000; font-size:8pt; position: fixed; top: 10px; left: 10px; min-height:50px; padding: 5px; border: 1px solid #E3E3E3; background-color:#FFFFFFF7; border-radius:2px; min-width:320px; color: black;}
-        div.snuheader {font-weight:bold; margin: -4px; background-color:#e5e5e5}
-        ul#snuhelper { list-style-type: none; padding-left: 2px; overflow-y: auto; max-height: 80vh; } 
-        ul#snuhelper li {margin-top:2px}
-        span.cmdkey { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; border:1pt solid #e3e3e3; background-color:#f3f3f3; min-width: 40px; cursor: pointer; display: inline-block;}
-        input.snutils { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; outline: none; font-size:10pt; font-weight:bold; width:99%; border: 1px solid #ffffff; margin:8px 2px 4px 2px; background-color:#ffffff }
-        span.cmdlabel { color: #333333; font-size:7pt; font-family:verdana, arial }
-        a.cmdlink { font-size:10pt; color: #1f8476; }
-        span.semihidden { font-size:6pt; color: #999; }
-        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey { border-color: #8BB3A2}
-        ul#snuhelper li.active span.cmdlabel { color: black}
-        div#snudirectlinks {margin: -5px 10px; padding-bottom:10px;}
-        div#snudirectlinks a {color:#22885c; text-decoration: none; }
-        div#snudirectlinks.snudirectlinksdisabled .dispidx { opacity: 0.3; }
-        div#snudirectlinks div { max-width:500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        div.snutils a.patreon {color:#1f1cd2;}
-        div.snufadein { animation: snuFadeIn 0.5s; }
-        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-        ${genericStyles}
+        div.snutils { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:#1a202c; z-index:10000000000000; font-size:13px; position:fixed; top:10px; left:10px; padding:0; background-color:#ffffff; border:1px solid #e2e8f0; border-radius:10px; min-width:380px; max-width:480px; box-shadow:0 8px 32px rgba(0,0,0,.15); }
+        div.snuheader { font-weight:600; font-size:13px; padding:8px 10px; background-color:#f7f9fc; border-radius:10px 10px 0 0; display:flex; align-items:center; gap:6px; cursor:grab; border-bottom:1px solid #e2e8f0; user-select:none; }
+        div.snuheader:active { cursor:grabbing; }
+        span.snudraghandle { color:#94a3b8; cursor:grab; opacity:.6; font-size:16px; flex-shrink:0; line-height:1; }
+        span.snudraghandle:hover { opacity:1; }
+        span.snutitle { flex:1; }
+        #snuslashcount { font-weight:400; font-size:11px; color:#64748b; background:#e2e8f0; padding:1px 6px; border-radius:10px; }
+        a.snuthemetoggle { color:#64748b; text-decoration:none; cursor:pointer; font-size:14px; opacity:.8; flex-shrink:0; line-height:1; }
+        a.snuthemetoggle:hover { opacity:1; color:#1a202c; }
+        a.cmdlink { color:#64748b; font-size:14px; text-decoration:none; flex-shrink:0; opacity:.8; line-height:1; cursor:pointer; }
+        a.cmdlink:hover { opacity:1; color:#dc2626; }
+        input.snutils { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; outline:none; font-size:12px; color:#1a202c; font-weight:normal; width:calc(100% - 20px); border:1px solid #e2e8f0; margin:8px 10px 4px 10px; background-color:#f8fafc; border-radius:6px; padding:6px 10px; box-sizing:border-box; display:block; }
+        input.snutils:focus { border-color:#3b82f6; }
+        ul#snuhelper { list-style-type:none; padding:4px 0; margin:0; overflow-y:auto; max-height:70vh; }
+        ul#snuhelper li { margin:1px 6px; padding:4px 6px; display:flex; align-items:center; border-radius:6px; cursor:pointer; }
+        ul#snuhelper li:hover { background-color:#f0f7ff; }
+        ul#snuhelper li.active { background-color:#e8f2fd; }
+        span.cmdkey { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; border:none; background-color:#d1fae5; color:#065f46; min-width:65px; cursor:pointer; display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; flex-shrink:0; }
+        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey { background-color:#a7f3d0; color:#064e3b; }
+        span.cmdlabel { color:#64748b; font-size:11px; margin-left:8px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        ul#snuhelper li.active span.cmdlabel { color:#1a202c; }
+        li.cmdexpand span.cmdkey { background-color:#dbeafe; color:#1d4ed8; }
+        li.cmdexpand:hover span.cmdkey { background-color:#bfdbfe; }
+        span.semihidden { font-size:10px; color:#94a3b8; }
+        div#snudirectlinks { margin:4px 10px 6px; padding-bottom:6px; font-size:11px; }
+        div#snudirectlinks a { color:#047857; text-decoration:none; }
+        div#snudirectlinks.snudirectlinksdisabled .dispidx { opacity:.3; }
+        div#snudirectlinks div { max-width:460px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        div#snuswitches { font-size:11px; padding:2px 10px 8px; color:#64748b; }
+        div.snufadein { animation:snuFadeIn .3s ease-out; }
+        @keyframes snuFadeIn { 0% { opacity:0; transform:translateY(-6px) scale(.98); } 100% { opacity:1; transform:translateY(0) scale(1); } }
         </style>`;
     }
     else if (snusettings.slashtheme == 'stealth') {
@@ -3587,25 +3577,57 @@ function snuSetShortCuts() {
     }
     else {
         divstyle = `<style>
-        div.snutils { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color:#ffffff; z-index:1000000000000; font-size:8pt; position: fixed; top: 10px; left: 10px; min-height:50px; padding: 5px; border: 1px solid #030303; background-color:#000000F7; border-radius:2px; min-width:320px; border: #333333 1pt solid; border-radius:  10px;}
-        div.snuheader {font-weight:bold; margin: -4px; background-color:#333333; border-radius:  10px 10px 0px 0px;}
-        ul#snuhelper { list-style-type: none; padding-left: 2px; overflow-y: auto; max-height: 80vh;} 
-        ul#snuhelper li {margin-top:2px}
-        span.cmdkey { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; border:1pt solid #00e676; background-color:#00e676; color: #000000; min-width: 40px; cursor: pointer; display: inline-block;}
-        input.snutils { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; outline: none; font-size:10pt; color:#00e676; font-weight:bold; width:99%; border: 1px solid #000000; margin:8px 2px 4px 2px; background-color:#000000F7 }
-        span.cmdlabel { color: #FFFFFF; font-size:7pt; }
-        a.cmdlink { font-size:10pt; color: #1f8476; } 
-        span.semihidden { font-size:6pt; color: #999; }
-        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey  { border-color: yellow}
-        ul#snuhelper li.active span.cmdlabel { color: yellow}
-        div#snudirectlinks {margin: -5px 10px; padding-bottom:10px;}
-        div#snudirectlinks a {color:#1cad6e; text-decoration: none; }
-        div#snudirectlinks.snudirectlinksdisabled .dispidx { opacity: 0.3; }
-        div#snudirectlinks div { max-width:500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        div.snutils a.patreon {color:#0cffdd;}
-        div.snufadein { animation: snuFadeIn 0.5s; }
-        @keyframes snuFadeIn { 0% { opacity: 0; } 30% { opacity: 0; } 100% { opacity: 1; } }
-        ${genericStyles}
+        div.snutils { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:#e2e8f0; z-index:1000000000000; font-size:13px; position:fixed; top:10px; left:10px; padding:0; background-color:#0b1929; border:1px solid #1e3a5f; border-radius:10px; min-width:380px; max-width:480px; box-shadow:0 8px 32px rgba(0,0,0,.7); }
+        div.snuheader { font-weight:600; font-size:13px; padding:8px 10px; background-color:#0d1f34; border-radius:10px 10px 0 0; display:flex; align-items:center; gap:6px; cursor:grab; border-bottom:1px solid #1e3a5f; user-select:none; }
+        div.snuheader:active { cursor:grabbing; }
+        span.snudraghandle { color:#4a6580; cursor:grab; opacity:.6; font-size:16px; flex-shrink:0; line-height:1; }
+        span.snudraghandle:hover { opacity:1; }
+        span.snutitle { flex:1; }
+        #snuslashcount { font-weight:400; font-size:11px; color:#64748b; background:#1a2f45; padding:1px 6px; border-radius:10px; }
+        a.snuthemetoggle { color:#94a3b8; text-decoration:none; cursor:pointer; font-size:14px; opacity:.8; flex-shrink:0; line-height:1; }
+        a.snuthemetoggle:hover { opacity:1; color:#e2e8f0; }
+        a.cmdlink { color:#94a3b8; font-size:14px; text-decoration:none; flex-shrink:0; opacity:.8; line-height:1; cursor:pointer; }
+        a.cmdlink:hover { opacity:1; color:#f87171; }
+        input.snutils { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; outline:none; font-size:12px; color:#e2e8f0; font-weight:normal; width:calc(100% - 20px); border:1px solid #1e3a5f; margin:8px 10px 4px 10px; background-color:#060e1a; border-radius:6px; padding:6px 10px; box-sizing:border-box; display:block; }
+        input.snutils:focus { border-color:#3b82f6; }
+        ul#snuhelper { list-style-type:none; padding:4px 0; margin:0; overflow-y:auto; max-height:70vh; }
+        ul#snuhelper li { margin:1px 6px; padding:4px 6px; display:flex; align-items:center; border-radius:6px; cursor:pointer; }
+        ul#snuhelper li:hover { background-color:#1a2f45; }
+        ul#snuhelper li.active { background-color:#152535; }
+        span.cmdkey { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; border:none; background-color:#1a3a2a; color:#34d399; min-width:65px; cursor:pointer; display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; flex-shrink:0; }
+        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey { background-color:#1e5a3f; color:#6ee7b7; }
+        span.cmdlabel { color:#94a3b8; font-size:11px; margin-left:8px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        ul#snuhelper li.active span.cmdlabel { color:#e2e8f0; }
+        li.cmdexpand { cursor:pointer; }
+        li.cmdexpand span.cmdkey { background-color:#1e3a5f; color:#93c5fd; }
+        li.cmdexpand:hover span.cmdkey { background-color:#2d4a6f; }
+        span.semihidden { font-size:10px; color:#4a6580; }
+        div#snudirectlinks { margin:4px 10px 6px; padding-bottom:6px; font-size:11px; }
+        div#snudirectlinks a { color:#34d399; text-decoration:none; }
+        div#snudirectlinks.snudirectlinksdisabled .dispidx { opacity:.3; }
+        div#snudirectlinks div { max-width:460px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        div#snuswitches { font-size:11px; padding:2px 10px 8px; color:#94a3b8; }
+        div.snufadein { animation:snuFadeIn .3s ease-out; }
+        @keyframes snuFadeIn { 0% { opacity:0; transform:translateY(-6px) scale(.98); } 100% { opacity:1; transform:translateY(0) scale(1); } }
+        div.snutils.snu-light { background-color:#ffffff; border-color:#e2e8f0; color:#1a202c; box-shadow:0 8px 32px rgba(0,0,0,.15); }
+        div.snutils.snu-light div.snuheader { background-color:#f7f9fc; border-bottom-color:#e2e8f0; color:#1a202c; }
+        div.snutils.snu-light #snuslashcount { background:#e2e8f0; color:#64748b; }
+        div.snutils.snu-light input.snutils { background-color:#f8fafc; border-color:#e2e8f0; color:#1a202c; }
+        div.snutils.snu-light input.snutils:focus { border-color:#3b82f6; }
+        div.snutils.snu-light ul#snuhelper li:hover { background-color:#f0f7ff; }
+        div.snutils.snu-light ul#snuhelper li.active { background-color:#e8f2fd; }
+        div.snutils.snu-light span.cmdkey { background-color:#d1fae5; color:#065f46; }
+        div.snutils.snu-light ul#snuhelper li:hover span.cmdkey, div.snutils.snu-light ul#snuhelper li.active span.cmdkey { background-color:#a7f3d0; color:#064e3b; }
+        div.snutils.snu-light span.cmdlabel { color:#64748b; }
+        div.snutils.snu-light ul#snuhelper li.active span.cmdlabel { color:#1a202c; }
+        div.snutils.snu-light a.cmdlink { color:#64748b; }
+        div.snutils.snu-light a.cmdlink:hover { color:#dc2626; }
+        div.snutils.snu-light a.snuthemetoggle { color:#64748b; }
+        div.snutils.snu-light a.snuthemetoggle:hover { color:#1a202c; }
+        div.snutils.snu-light div#snudirectlinks a { color:#047857; }
+        div.snutils.snu-light li.cmdexpand span.cmdkey { background-color:#dbeafe; color:#1d4ed8; }
+        div.snutils.snu-light span.snudraghandle { color:#94a3b8; }
+        div.snutils.snu-light div#snuswitches { color:#64748b; }
         </style>`;
     }
 
@@ -3618,35 +3640,25 @@ function snuSetShortCuts() {
         const cleanHTML = DOMPurify.sanitize(
             divstyle +
             `<div class="snutils -polaris" style="display:none;">
-                <div class="snuheader">
-                    <a id='cmdhidedot' class='cmdlink' href="#"><svg style="height:16px; width:16px;">
-                            <circle cx="8" cy="8" r="5" fill="#FF605C" />
-                        </svg></a> 
-                    Slash commands 
-                    <span id="snuslashcount" style="font-weight:normal;"></span>
-                    <span style="float:right; font-size:8pt; line-height: 0pt;">
-                        <a style="font-family:Helvetica,Ariel;text-decoration:none; display:flex; align-items:center;" 
-                        href="https://www.linkedin.com/company/sn-utils/posts/" target="_blank" class="snuflash">
-                            Follow #snutils on
-                            <svg style="margin:3px;" height="14" viewBox="0 0 72 72" width="14" xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" fill-rule="evenodd">
-                                    <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,0 64,0 L8,0 C3.581722,0 0,3.581722 0,8 L0,64 C0,68.418278 3.581722,72 8,72 Z" fill="#007EBB"/>
-                                    <path d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 
-                                    L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 
-                                    12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z" 
-                                    fill="#FFF"/>
-                                </g>
-                            </svg>
-                        </a> &nbsp;
-                    </span>
+                <div class="snuheader" id="snuheader">
+                    <span class="snudraghandle" title="Drag to reposition">&#8287;&#8287;&#8287;&#8287;&#8287;&#8287;</span>
+                    <span class="snutitle">Slash commands</span>
+                    <span id="snuslashcount"></span>
+                    <a id="snuthemetoggle" class="snuthemetoggle" href="#" title="Switch to light mode">&#x2600;</a>
+                    <a id="cmdhidedot" class="cmdlink" href="#" title="Close">
+                        <svg style="height:14px;width:14px;vertical-align:middle;" viewBox="0 0 14 14">
+                            <line x1="2" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="12" y1="2" x2="2" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
                 </div>
-                <input id="snufilter" name="snufilter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
-                    aria-autocomplete="both" aria-haspopup="false" class="snutils" type="text" 
-                    placeholder='SN Utils Slashcommand' />
+                <input id="snufilter" name="snufilter" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                    aria-autocomplete="both" aria-haspopup="false" class="snutils" type="text"
+                    placeholder='/ Slash command...' />
                 <ul id="snuhelper"></ul>
                 <div id="snudirectlinks" class="${snudirectlinks}"></div>
                 <div id="snuswitches"></div>
-            </div>`, 
+            </div>`,
             { FORCE_BODY: true, ADD_ATTR: ['target'] }
         );
 
@@ -3659,6 +3671,38 @@ function snuSetShortCuts() {
             hidedot?.addEventListener('click', evt => snuSlashCommandHide(false, evt));
             snufilter?.addEventListener('focus', function () { this.select(); });
             setTimeout(() => snuSlashCommandAddListener(false), 200);
+
+            // Dark / light mode toggle
+            const snuPanel = window.top.document.querySelector('.snutils.-polaris');
+            const themeToggle = window.top.document.getElementById('snuthemetoggle');
+            themeToggle?.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isLight = snuPanel.classList.toggle('snu-light');
+                this.title   = isLight ? 'Switch to dark mode'  : 'Switch to light mode';
+                this.innerHTML = isLight ? '&#x1F319;' : '&#x2600;';
+            });
+
+            // Drag-and-drop repositioning
+            const snuHeaderEl = window.top.document.getElementById('snuheader');
+            let snuDrag = { on: false, x0: 0, y0: 0, l0: 0, t0: 0 };
+            snuHeaderEl?.addEventListener('mousedown', function (e) {
+                if (e.target.closest('#cmdhidedot') || e.target.closest('#snuthemetoggle')) return;
+                e.preventDefault();
+                const r = snuPanel.getBoundingClientRect();
+                snuDrag = { on: true, x0: e.clientX, y0: e.clientY, l0: r.left, t0: r.top };
+                snuHeaderEl.style.cursor = 'grabbing';
+            });
+            window.top.document.addEventListener('mousemove', function (e) {
+                if (!snuDrag.on) return;
+                const vw = window.top.innerWidth, vh = window.top.innerHeight;
+                const pw = snuPanel.offsetWidth;
+                snuPanel.style.left = Math.max(0, Math.min(vw - pw,       snuDrag.l0 + e.clientX - snuDrag.x0)) + 'px';
+                snuPanel.style.top  = Math.max(0, Math.min(vh - 60, snuDrag.t0 + e.clientY - snuDrag.y0)) + 'px';
+            });
+            window.top.document.addEventListener('mouseup', function () {
+                if (snuDrag.on) { snuDrag.on = false; if (snuHeaderEl) snuHeaderEl.style.cursor = 'grab'; }
+            });
 
         } catch (e) {
             console.warn('Failed to inject SN Utils UI:', e);
