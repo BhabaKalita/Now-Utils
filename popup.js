@@ -1823,6 +1823,69 @@ function getSlashcommands() {
             $('#downloadcommands').hide();
         }
 
+        // Export button — reuse existing downloadCommands()
+        $('#btnExportCommands').off('click').on('click', function(e) {
+            e.preventDefault();
+            downloadCommands();
+        });
+
+        // Import button — open file picker
+        $('#btnImportCommands').off('click').on('click', function(e) {
+            e.preventDefault();
+            document.getElementById('importCommandsFile').value = '';
+            document.getElementById('importCommandsFile').click();
+        });
+
+        // File selected — read, validate, merge, save
+        $('#importCommandsFile').off('change').on('change', function() {
+            var file = this.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                var imported;
+                try {
+                    imported = JSON.parse(evt.target.result);
+                } catch (err) {
+                    alert('Could not parse file: ' + err.message);
+                    return;
+                }
+                if (typeof imported !== 'object' || Array.isArray(imported) || imported === null) {
+                    alert('Invalid format: expected a JSON object of slash commands.');
+                    return;
+                }
+                var importedKeys = Object.keys(imported);
+                if (importedKeys.length === 0) {
+                    alert('No commands found in the file.');
+                    return;
+                }
+                // Validate each entry has at least a url property
+                var invalid = importedKeys.filter(function(k) {
+                    return typeof imported[k] !== 'object' || imported[k] === null || !imported[k].url;
+                });
+                if (invalid.length > 0) {
+                    alert('Invalid command entries (missing url): ' + invalid.join(', '));
+                    return;
+                }
+                var existingKeys = Object.keys(objCustomCommands || {});
+                var conflicts = importedKeys.filter(function(k) { return existingKeys.includes(k); });
+                var msg = 'Import ' + importedKeys.length + ' command(s):\n' + importedKeys.join(', ');
+                if (conflicts.length > 0) {
+                    msg += '\n\nWill overwrite ' + conflicts.length + ' existing command(s):\n' + conflicts.join(', ');
+                }
+                msg += '\n\nContinue?';
+                if (!confirm(msg)) return;
+
+                var merged = Object.assign({}, objCustomCommands, imported);
+                objCustomCommands = merged;
+                $('#slashcommands').val(JSON.stringify(merged));
+                objSettings.slashcommands = merged;
+                saveSettings();
+                getSlashcommands();
+                alert('Successfully imported ' + importedKeys.length + ' command(s).');
+            };
+            reader.readAsText(file);
+        });
+
         $('button#btnsaveslashcommand').click(function () {
 
             event.preventDefault();

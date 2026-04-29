@@ -464,6 +464,7 @@
                                         <option value="dark">Dark</option>
                                         <option value="light">Light</option>
                                         <option value="stealth">Stealth (almost invisible)</option>
+                                        <option value="ghost">Ghost (transparent, text only)</option>
                                         <option value="theme">Follow Instance Theme (beta)</option>
                                     </select>
                                 </div>
@@ -556,11 +557,20 @@
                 </div>
 
                 <div class="tab-pane" id="tabslashcommands">
-                    <div class="input-group">
-                        <input type="search" id="tbxslashcommands" name="tbxslashcommands"
-                            class="form-control form-control-sm sync"
-                            placeholder="Search existing slashcommands..." />
-                        <button class="btn btn-outline-secondary btn-sm" type="button">Go!</button>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="input-group">
+                            <input type="search" id="tbxslashcommands" name="tbxslashcommands"
+                                class="form-control form-control-sm sync"
+                                placeholder="Search existing slashcommands..." />
+                            <button class="btn btn-outline-secondary btn-sm" type="button">Go!</button>
+                        </div>
+                        <button id="btnExportCommands" class="btn btn-outline-secondary btn-sm text-nowrap" title="Export custom commands as JSON">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                        <button id="btnImportCommands" class="btn btn-outline-secondary btn-sm text-nowrap" title="Import commands from a JSON file">
+                            <i class="fas fa-file-import"></i> Import
+                        </button>
+                        <input type="file" id="importCommandsFile" accept=".json,.txt" style="display:none">
                     </div>
                     <div id="warningBackup" class="alert alert-warning mt-2" style="display: none;">
                       <strong>⚠️ Warning!</strong> You have custom slash commands. Please <a id="backupCmdsLink" href="#">back them up</a> to prevent accidental loss.
