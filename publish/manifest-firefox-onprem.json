@@ -1,8 +1,8 @@
 {
-    "name": "SN Utils OnPrem",
-    "short_name": "SN Utils Onprem",
+    "name": "Now Utils OnPrem",
+    "short_name": "Now Utils OnPrem",
     "description": "ServiceNow Productivity tools. (Personal work, not affiliated to ServiceNow)",
-    "author": "Arnoud Kooi / arnoudkooi.com",
+    "author": "",
     "version": "0.0.0.0",
     "permissions": [
         "activeTab",
@@ -99,7 +99,7 @@
         }
     },
     "page_action": {
-        "default_title": "SN Utils",
+        "default_title": "Now Utils",
         "default_popup": "popup.html",
         "default_icon": {
             "16": "images/op16.png",
@@ -127,7 +127,7 @@
     "manifest_version": 2,
     "applications": {
         "gecko": {
-            "id": "snutilsonprem@arnoudkooi.com"
+            "id": "nowutils-onprem@nowutils"
         }
     }
 }

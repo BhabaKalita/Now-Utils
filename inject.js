@@ -92,7 +92,7 @@ var snuslashcommands = {
     },
     "cheat": {
         "url": "https://www.arnoudkooi.com/cheatsheet/",
-        "hint": "Download the latest SN Utils cheatsheet"
+        "hint": "Download the latest Now Utils cheatsheet"
     },
     "comm": {
         "url": "https://www.servicenow.com/community/forums/searchpage/tab/message?advanced=false&allow_punctuation=false&q=$0",

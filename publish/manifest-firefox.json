@@ -1,8 +1,8 @@
 {
-    "name": "SN Utils - Tools for ServiceNow",
-    "short_name": "SN Utils",
+    "name": "Now Utils - Tools for ServiceNow",
+    "short_name": "Now Utils",
     "description": "ServiceNow Productivity tools. (Personal work, not affiliated to ServiceNow)",
-    "author": "Arnoud Kooi / arnoudkooi.com",
+    "author": "",
     "version": "0.0.0.0",
     "permissions": [
         "activeTab",
@@ -114,7 +114,7 @@
         }
     },
     "page_action": {
-        "default_title": "SN Utils",
+        "default_title": "Now Utils",
         "default_popup": "popup.html",
         "default_icon": {
             "16": "images/icon16.png",
@@ -140,7 +140,7 @@
     "manifest_version": 2,
     "applications": {
         "gecko": {
-            "id": "email@arnoudkooi.com"
+            "id": "nowutils@nowutils"
         }
     },
     "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src https://*.service-now.com https://*.servicenowservices.com 'self' data:; child-src 'none'; object-src 'none'; connect-src https://*.service-now.com https://*.servicenowservices.com ws://127.0.0.1:1978/"
