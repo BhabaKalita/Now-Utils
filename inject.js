@@ -3577,36 +3577,36 @@ function snuSetShortCuts() {
     }
     else if (snusettings.slashtheme == 'ghost') {
         divstyle = `<style>
-        div.snutils { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:rgba(255,255,255,.95); z-index:1000000000000; font-size:13px; position:fixed; top:10px; left:10px; padding:0; background:none; border:none; border-radius:10px; min-width:340px; max-width:480px; box-shadow:none; }
-        div.snuheader { font-weight:600; font-size:13px; padding:8px 10px; background:none; border-radius:10px 10px 0 0; display:flex; align-items:center; gap:6px; cursor:grab; border-bottom:1px solid rgba(255,255,255,.18); user-select:none; }
+        div.snutils { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; color:rgba(0,0,0,.9); z-index:1000000000000; font-size:13px; position:fixed; top:10px; left:10px; padding:0; background:none; border:none; border-radius:10px; min-width:340px; max-width:480px; box-shadow:none; }
+        div.snuheader { font-weight:600; font-size:13px; padding:8px 10px; background:none; border-radius:10px 10px 0 0; display:flex; align-items:center; gap:6px; cursor:grab; border-bottom:1px solid rgba(0,0,0,.15); user-select:none; }
         div.snuheader:active { cursor:grabbing; }
-        span.snudraghandle { color:rgba(255,255,255,.45); cursor:grab; font-size:16px; flex-shrink:0; line-height:1; }
-        span.snudraghandle:hover { color:rgba(255,255,255,.85); }
-        span.snutitle { flex:1; text-shadow:0 1px 4px rgba(0,0,0,.9); }
-        #snuslashcount { font-weight:400; font-size:11px; color:rgba(255,255,255,.55); background:none; padding:1px 4px; text-shadow:0 1px 3px rgba(0,0,0,.8); }
-        a.snuthemetoggle { color:rgba(255,255,255,.6); text-decoration:none; cursor:pointer; font-size:14px; flex-shrink:0; line-height:1; }
-        a.snuthemetoggle:hover { color:rgba(255,255,255,.95); }
-        a.cmdlink { color:rgba(255,255,255,.55); font-size:14px; text-decoration:none; flex-shrink:0; line-height:1; cursor:pointer; }
-        a.cmdlink:hover { color:rgba(255,255,255,.95); }
-        input.snutils { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; outline:none; font-size:12px; color:rgba(255,255,255,.88); font-weight:normal; width:calc(100% - 20px); border:none; border-bottom:1px solid rgba(255,255,255,.25); margin:8px 10px 4px 10px; background:none; padding:4px 2px; box-sizing:border-box; display:block; text-shadow:0 1px 3px rgba(0,0,0,.75); }
-        input.snutils::placeholder { color:rgba(255,255,255,.35); }
-        input.snutils:focus { border-bottom-color:rgba(255,255,255,.65); outline:none; }
+        span.snudraghandle { color:rgba(0,0,0,.35); cursor:grab; font-size:16px; flex-shrink:0; line-height:1; }
+        span.snudraghandle:hover { color:rgba(0,0,0,.7); }
+        span.snutitle { flex:1; }
+        #snuslashcount { font-weight:400; font-size:11px; color:rgba(0,0,0,.45); background:none; padding:1px 4px; }
+        a.snuthemetoggle { color:rgba(0,0,0,.45); text-decoration:none; cursor:pointer; font-size:14px; flex-shrink:0; line-height:1; }
+        a.snuthemetoggle:hover { color:rgba(0,0,0,.85); }
+        a.cmdlink { color:rgba(0,0,0,.4); font-size:14px; text-decoration:none; flex-shrink:0; line-height:1; cursor:pointer; }
+        a.cmdlink:hover { color:rgba(0,0,0,.8); }
+        input.snutils { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; outline:none; font-size:12px; color:rgba(0,0,0,.85); font-weight:normal; width:calc(100% - 20px); border:none; border-bottom:1px solid rgba(0,0,0,.2); margin:8px 10px 4px 10px; background:none; padding:4px 2px; box-sizing:border-box; display:block; }
+        input.snutils::placeholder { color:rgba(0,0,0,.3); }
+        input.snutils:focus { border-bottom-color:rgba(0,0,0,.55); outline:none; }
         ul#snuhelper { list-style-type:none; padding:4px 0; margin:0; overflow-y:auto; max-height:70vh; }
         ul#snuhelper li { margin:1px 6px; padding:3px 6px; display:flex; align-items:center; border-radius:6px; cursor:pointer; }
-        ul#snuhelper li:hover { background:rgba(255,255,255,.08); }
-        ul#snuhelper li.active { background:rgba(255,255,255,.13); }
-        span.cmdkey { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; border:none; background:none; color:rgba(110,235,160,.95); min-width:65px; cursor:pointer; display:inline-block; padding:2px 0; font-size:11px; flex-shrink:0; text-shadow:0 1px 4px rgba(0,0,0,.85); }
-        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey { color:rgba(150,255,190,1); }
-        span.cmdlabel { color:rgba(255,255,255,.65); font-size:11px; margin-left:8px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-shadow:0 1px 3px rgba(0,0,0,.75); }
-        ul#snuhelper li.active span.cmdlabel { color:rgba(255,255,255,.95); }
-        li.cmdexpand span.cmdkey { color:rgba(140,195,255,.9); }
-        li.cmdexpand:hover span.cmdkey { color:rgba(180,215,255,1); }
-        span.semihidden { font-size:10px; color:rgba(255,255,255,.38); }
+        ul#snuhelper li:hover { background:rgba(0,0,0,.06); }
+        ul#snuhelper li.active { background:rgba(0,0,0,.1); }
+        span.cmdkey { font-family:Menlo,Monaco,Consolas,"Courier New",monospace; border:none; background:none; color:rgba(0,110,60,.9); min-width:65px; cursor:pointer; display:inline-block; padding:2px 0; font-size:11px; flex-shrink:0; }
+        ul#snuhelper li:hover span.cmdkey, ul#snuhelper li.active span.cmdkey { color:rgba(0,130,70,1); }
+        span.cmdlabel { color:rgba(0,0,0,.6); font-size:11px; margin-left:8px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        ul#snuhelper li.active span.cmdlabel { color:rgba(0,0,0,.9); }
+        li.cmdexpand span.cmdkey { color:rgba(0,80,160,.85); }
+        li.cmdexpand:hover span.cmdkey { color:rgba(0,100,190,1); }
+        span.semihidden { font-size:10px; color:rgba(0,0,0,.3); }
         div#snudirectlinks { margin:4px 10px 6px; padding-bottom:6px; font-size:11px; }
-        div#snudirectlinks a { color:rgba(110,235,160,.88); text-decoration:none; text-shadow:0 1px 3px rgba(0,0,0,.75); }
+        div#snudirectlinks a { color:rgba(0,110,60,.85); text-decoration:none; }
         div#snudirectlinks.snudirectlinksdisabled .dispidx { opacity:.3; }
         div#snudirectlinks div { max-width:460px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        div#snuswitches { font-size:11px; padding:2px 10px 8px; color:rgba(255,255,255,.55); text-shadow:0 1px 3px rgba(0,0,0,.7); }
+        div#snuswitches { font-size:11px; padding:2px 10px 8px; color:rgba(0,0,0,.5); }
         div.snufadein { animation:snuFadeIn .3s ease-out; }
         @keyframes snuFadeIn { 0% { opacity:0; transform:translateY(-6px); } 100% { opacity:1; transform:translateY(0); } }
         </style>`;
