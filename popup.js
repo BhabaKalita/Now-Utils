@@ -1823,10 +1823,32 @@ function getSlashcommands() {
             $('#downloadcommands').hide();
         }
 
-        // Export button — reuse existing downloadCommands()
+        // Export button — export all visible commands (built-in + custom)
         $('#btnExportCommands').off('click').on('click', function(e) {
             e.preventDefault();
-            downloadCommands();
+            if (!dataslashcommands || dataslashcommands.length === 0) {
+                alert('No commands to export.');
+                return;
+            }
+            var exportObj = {};
+            dataslashcommands.forEach(function(row) {
+                if (row.source === '3script') return; // scripted commands have no exportable URL
+                exportObj[row.command] = {
+                    url: row.url,
+                    hint: snuDecodeHtml(row.hint),
+                    fields: row.fields,
+                    order: row.order,
+                    overwriteurl: row.overwriteurl
+                };
+            });
+            var text = JSON.stringify(exportObj, null, 4);
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', 'slashcommands.json.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
         });
 
         // Import button — open file picker
@@ -1866,22 +1888,33 @@ function getSlashcommands() {
                     alert('Invalid command entries (missing url): ' + invalid.join(', '));
                     return;
                 }
-                var existingKeys = Object.keys(objCustomCommands || {});
-                var conflicts = importedKeys.filter(function(k) { return existingKeys.includes(k); });
-                var msg = 'Import ' + importedKeys.length + ' command(s):\n' + importedKeys.join(', ');
-                if (conflicts.length > 0) {
-                    msg += '\n\nWill overwrite ' + conflicts.length + ' existing command(s):\n' + conflicts.join(', ');
+                var existingKeys = new Set([
+                    ...Object.keys(objCustomCommands || {}),
+                    ...Object.keys(snuslashcommands || {})
+                ]);
+                var newKeys = importedKeys.filter(function(k) { return !existingKeys.has(k); });
+                var skipped = importedKeys.filter(function(k) { return existingKeys.has(k); });
+
+                if (newKeys.length === 0) {
+                    alert('No new commands to import. All ' + importedKeys.length + ' command(s) already exist and will not be overwritten.');
+                    return;
+                }
+
+                var msg = 'Import ' + newKeys.length + ' new command(s):\n' + newKeys.join(', ');
+                if (skipped.length > 0) {
+                    msg += '\n\nSkipping ' + skipped.length + ' command(s) that already exist:\n' + skipped.join(', ');
                 }
                 msg += '\n\nContinue?';
                 if (!confirm(msg)) return;
 
-                var merged = Object.assign({}, objCustomCommands, imported);
+                var merged = Object.assign({}, objCustomCommands);
+                newKeys.forEach(function(k) { merged[k] = imported[k]; });
                 objCustomCommands = merged;
                 $('#slashcommands').val(JSON.stringify(merged));
                 objSettings.slashcommands = merged;
                 saveSettings();
                 getSlashcommands();
-                alert('Successfully imported ' + importedKeys.length + ' command(s).');
+                alert('Successfully imported ' + newKeys.length + ' command(s).' + (skipped.length > 0 ? '\nSkipped ' + skipped.length + ' existing command(s).' : ''));
             };
             reader.readAsText(file);
         });
